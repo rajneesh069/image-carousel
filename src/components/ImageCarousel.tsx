@@ -17,9 +17,9 @@ export default function ImageCarousel({ images }: { images: string[] }) {
   }, [ind, images]);
 
   return (
-    <div className="flex justify-center items-center h-[100vh] w-[100vw] border border-white">
+    <div className="relative">
       <MoveLeft
-        className="border border-white bg-inherit rounded-full"
+        className="absolute left-0 top-[40%]"
         cursor={"pointer"}
         size={50}
         onClick={() => {
@@ -36,13 +36,18 @@ export default function ImageCarousel({ images }: { images: string[] }) {
           );
         }}
       />
-      <img src={images[ind]} key={ind} width={500} height={500} />
+      <img
+        src={images[ind]}
+        key={ind}
+        width={500}
+        draggable={false}
+        contentEditable={false}
+      />
       <MoveRight
-        className="border border-white bg-inherit rounded-full"
+        className="absolute right-0 top-[40%]"
         size={50}
         cursor={"pointer"}
         onClick={() => {
-          console.log("Clicked");
           setCurrentInd((currentInd + 1) % images.length);
           setInd((currentInd + 1) % images.length);
         }}
